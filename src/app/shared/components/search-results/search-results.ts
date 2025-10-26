@@ -1,4 +1,3 @@
-// src/app/shared/components/search-results/search-results.ts
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
