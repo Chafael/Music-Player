@@ -1,3 +1,15 @@
-<h2>
-    Esto es el contenido del album
-</h2>
+<div class="main-content">
+  @if (hasSearched()) {
+    <app-search-results
+      [tracks]="tracks()"
+      [artists]="artists()"
+      [albums]="albums()"
+      [loading]="loading()"
+    />
+  } @else {
+    <div class="welcome-message">
+      <h1>Busca tu música favorita</h1>
+      <p>Encuentra canciones, artistas y álbumes de Spotify</p>
+    </div>
+  }
+</div>

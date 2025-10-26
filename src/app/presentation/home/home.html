@@ -1,6 +1,8 @@
 <div class="parent">
-    <app-navbar></app-navbar>
-    <app-sidebar></app-sidebar>
-    <app-progress-bar></app-progress-bar>
-    <app-main></app-main>
+  <app-navbar (onSearch)="handleSearch($event)"></app-navbar>
+
+  <app-sidebar></app-sidebar>
+  <app-progress-bar></app-progress-bar>
+
+  <app-main #mainComponent></app-main>
 </div>
