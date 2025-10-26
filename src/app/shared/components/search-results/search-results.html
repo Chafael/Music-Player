@@ -1,0 +1,82 @@
+<div class="search-results">
+  @if (loading()) {
+    <div class="loading">
+      <mat-icon>refresh</mat-icon>
+      <p>Buscando...</p>
+    </div>
+  } @else {
+    @if (tracks().length > 0) {
+      <section class="results-section">
+        <h2>Canciones</h2>
+        <mat-list class="tracks-list">
+          @for (track of tracks(); track track.id) {
+            <mat-list-item class="track-item">
+              <img
+                matListItemAvatar
+                [src]="track.album.images[0]?.url"
+                [alt]="track.name"
+                class="track-image"
+              />
+              <div matListItemTitle class="track-title">{{ track.name }}</div>
+              <div matListItemLine class="track-artist">
+                {{ getArtistNames(track.artists) }}
+              </div>
+              <div matListItemLine class="track-duration">
+                {{ formatDuration(track.duration_ms) }}
+              </div>
+            </mat-list-item>
+          }
+        </mat-list>
+      </section>
+    }
+    @if (artists().length > 0) {
+      <section class="results-section">
+        <h2>Artistas</h2>
+        <div class="artists-grid">
+          @for (artist of artists(); track artist.id) {
+            <mat-card class="artist-card">
+              <img
+                mat-card-image
+                [src]="artist.images[0]?.url || 'assets/default-artist.png'"
+                [alt]="artist.name"
+                class="artist-image"
+              />
+              <mat-card-content>
+                <h3>{{ artist.name }}</h3>
+                <p>Artista</p>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      </section>
+    }
+    @if (albums().length > 0) {
+      <section class="results-section">
+        <h2>Álbumes</h2>
+        <div class="albums-grid">
+          @for (album of albums(); track album.id) {
+            <mat-card class="album-card">
+              <img
+                mat-card-image
+                [src]="album.images[0]?.url"
+                [alt]="album.name"
+                class="album-image"
+              />
+              <mat-card-content>
+                <h3>{{ album.name }}</h3>
+                <p>{{ getArtistNames(album.artists) }}</p>
+                <p class="album-year">{{ album.release_date.substring(0, 4) }}</p>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      </section>
+    }
+    @if (tracks().length === 0 && artists().length === 0 && albums().length === 0) {
+      <div class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No se encontraron resultados</p>
+      </div>
+    }
+  }
+</div>
