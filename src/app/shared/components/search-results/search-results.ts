@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -21,6 +21,7 @@ export class SearchResults {
   readonly artists = input<SpotifyArtist[]>([]);
   readonly albums = input<SpotifyAlbum[]>([]);
   readonly loading = input<boolean>(false);
+  readonly trackSelected = output<SpotifyTrack>();
 
   formatDuration(ms: number): string {
     const minutes = Math.floor(ms / 60000);
@@ -30,5 +31,9 @@ export class SearchResults {
 
   getArtistNames(artists: { name: string }[]): string {
     return artists.map((a) => a.name).join(', ');
+  }
+
+  onTrackClick(track: SpotifyTrack): void {
+    this.trackSelected.emit(track);
   }
 }

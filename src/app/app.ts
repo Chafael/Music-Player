@@ -3,7 +3,7 @@ import { Home } from './presentation/home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [Home],  // ← Sin RouterOutlet
+  imports: [Home],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

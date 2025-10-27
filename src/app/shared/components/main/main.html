@@ -5,6 +5,7 @@
       [artists]="artists()"
       [albums]="albums()"
       [loading]="loading()"
+      (trackSelected)="handleTrackSelect($event)"
     />
   } @else {
     <div class="welcome-message">

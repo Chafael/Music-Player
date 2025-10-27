@@ -1,6 +1,57 @@
 <div class="progress-bar-container">
-  <div class="player-info">
-    <mat-icon class="music-note">music_note</mat-icon>
-    <span class="player-text">Reproductor no disponible en esta versión</span>
-  </div>
+  @if (selectedTrack()) {
+    <div class="player-full">
+      <!-- Información de la canción (izquierda) -->
+      <div class="track-info">
+        <img 
+          [src]="selectedTrack()!.album.images[0]?.url" 
+          [alt]="selectedTrack()!.name"
+          class="track-cover"
+        />
+        <div class="track-details">
+          <div class="track-name">{{ selectedTrack()!.name }}</div>
+          <div class="track-artist">{{ getArtistNames(selectedTrack()!.artists) }}</div>
+        </div>
+        <mat-icon class="heart-icon">favorite_border</mat-icon>
+      </div>
+
+      <!-- Controles de reproducción (centro) -->
+      <div class="player-controls">
+        <div class="control-buttons">
+          <mat-icon class="control-btn">shuffle</mat-icon>
+          <mat-icon class="control-btn">skip_previous</mat-icon>
+          <button class="play-button">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <mat-icon class="control-btn">skip_next</mat-icon>
+          <mat-icon class="control-btn">repeat</mat-icon>
+        </div>
+        <div class="progress-section">
+          <span class="time-current">0:00</span>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="time-total">{{ formatDuration(selectedTrack()!.duration_ms) }}</span>
+        </div>
+      </div>
+
+      <!-- Controles adicionales (derecha) -->
+      <div class="extra-controls">
+        <mat-icon class="extra-btn">queue_music</mat-icon>
+        <mat-icon class="extra-btn">devices</mat-icon>
+        <div class="volume-control">
+          <mat-icon class="extra-btn">volume_up</mat-icon>
+          <div class="volume-bar">
+            <div class="volume-fill" style="width: 70%"></div>
+          </div>
+        </div>
+        <mat-icon class="extra-btn">fullscreen</mat-icon>
+      </div>
+    </div>
+  } @else {
+    <div class="player-info">
+      <mat-icon class="music-note">music_note</mat-icon>
+      <span class="player-text">Reproductor no disponible en esta versión</span>
+    </div>
+  }
 </div>

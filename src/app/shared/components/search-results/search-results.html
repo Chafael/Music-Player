@@ -10,7 +10,7 @@
         <h2>Canciones</h2>
         <mat-list class="tracks-list">
           @for (track of tracks(); track track.id) {
-            <mat-list-item class="track-item">
+            <mat-list-item class="track-item" (click)="onTrackClick(track)">
               <img
                 matListItemAvatar
                 [src]="track.album.images[0]?.url"

@@ -1,8 +1,6 @@
 <div class="parent">
   <app-navbar (onSearch)="handleSearch($event)"></app-navbar>
-
   <app-sidebar></app-sidebar>
-  <app-progress-bar></app-progress-bar>
-
+  <app-progress-bar [selectedTrack]="getSelectedTrack()"></app-progress-bar>
   <app-main #mainComponent></app-main>
 </div>
