@@ -5,11 +5,38 @@
   </div>
 
   <div class="sidebar-content">
-    <div class="info-card">
-      <mat-icon>info</mat-icon>
-      <div class="info-text">
-        <h3>Vista previa de Spotify</h3>
-      </div>
+    <div class="recommendations-section">
+      <h3 class="section-title">Recomendaciones</h3>
+      
+      @if (loading()) {
+        <div class="loading-state">
+          <mat-icon>refresh</mat-icon>
+          <p>Cargando...</p>
+        </div>
+      } @else if (recommendations().length > 0) {
+        <div class="recommendations-list">
+          @for (track of recommendations(); track track.id) {
+            <div class="recommendation-item" (click)="onTrackClick(track)">
+              <img 
+                [src]="track.album.images[2]?.url || track.album.images[0]?.url" 
+                [alt]="track.name"
+                class="track-thumbnail"
+              />
+              <div class="track-info">
+                <div class="track-name">{{ track.name }}</div>
+                <div class="track-artist">{{ getArtistNames(track.artists) }}</div>
+              </div>
+              <mat-icon class="play-icon">play_circle</mat-icon>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <mat-icon>music_off</mat-icon>
+          <p>No hay recomendaciones disponibles</p>
+        </div>
+      }
     </div>
+
   </div>
 </aside>
