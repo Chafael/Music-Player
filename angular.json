@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Music-Player": {
+    "EXAMPLE_APP": {
       "projectType": "application",
       "schematics": {},
       "root": "",
