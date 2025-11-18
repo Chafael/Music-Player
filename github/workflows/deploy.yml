@@ -5,7 +5,7 @@ on:
     push:
         branches:
             - main
-            - newbranch
+            - new-branch
 
 jobs:
     deploy:
